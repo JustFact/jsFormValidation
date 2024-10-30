@@ -5,7 +5,8 @@
   font-size: 14px;
 }
 
-input.error:invalid {
+input.error:invalid,
+input.error:valid {
   border: 2px solid red;
 }
 

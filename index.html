@@ -34,6 +34,26 @@
           <span class="errorMessage"></span>
         </label>
       </div>
+      <div>
+        <label for="password">
+          <span>Password:</span>
+          <input
+            type="password"
+            id="password"
+            required
+            minlength="8"
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+          />
+          <span class="errorMessage"></span>
+        </label>
+      </div>
+      <div>
+        <label for="confirmPassword">
+          <span>Confirm Password:</span>
+          <input type="password" id="confirmPassword" required />
+          <span class="errorMessage"></span>
+        </label>
+      </div>
       <button>Submit</button>
     </form>
   </body>

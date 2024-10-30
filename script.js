@@ -76,3 +76,59 @@ postalCode.addEventListener("blur", () => {
     postalCode.classList.add("error");
   }
 });
+
+/* ====================================================== */
+const pwd = document.querySelector("#password");
+const pwdError = document.querySelector("#password + .errorMessage");
+const cnfPwd = document.querySelector("#confirmPassword");
+const cnfPwdError = document.querySelector("#confirmPassword + .errorMessage");
+
+const confirmPassword = () => {
+  if (!pwd.validity.valid) {
+    cnfPwdError.textContent = "Please correct the password as per requirement";
+    cnfPwd.classList.add("error");
+  } else if (cnfPwd.validity.valueMissing) {
+    cnfPwdError.textContent = "Value required";
+    cnfPwd.classList.add("error");
+  } else if (!cnfPwd.value.includes(pwd.value)) {
+    cnfPwdError.textContent = "Password mismatch";
+    cnfPwd.classList.add("error");
+  } else {
+    cnfPwdError.textContent = "";
+    cnfPwd.classList.remove("error");
+  }
+};
+
+pwd.addEventListener("input", () => {
+  if (pwd.validity.patternMismatch) {
+    pwdError.textContent =
+      "Password must be 8 character long and must have at least 1 lowercase, 1 uppercase, 1 special character and 1 number";
+    pwd.classList.add("error");
+  } else if (pwd.validity.valueMissing) {
+    pwdError.textContent = "Password is required";
+    pwd.classList.add("error");
+  } else {
+    pwdError.textContent = "";
+    pwd.classList.remove("error");
+  }
+
+  if (cnfPwd.value !== "") {
+    confirmPassword();
+  }
+});
+
+pwd.addEventListener("blur", () => {
+  if (pwd.validity.valueMissing) {
+    pwdError.textContent = "Password is required";
+    pwd.classList.add("error");
+  }
+});
+
+cnfPwd.addEventListener("input", confirmPassword);
+
+cnfPwd.addEventListener("blur", () => {
+  if (cnfPwd.validity.valueMissing) {
+    cnfPwdError.textContent = "Value Required";
+    cnfPwd.classList.add("error");
+  }
+});
